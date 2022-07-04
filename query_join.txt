@@ -1,0 +1,84 @@
+1.
+SELECT	
+    `students`.`name` AS `Nomi Studenti`
+FROM 
+    `students`
+JOIN
+     `degrees`
+ON 
+    `students`.`degree_id` = `degrees`.`id`
+WHERE 
+    degrees.name = "Corso di Laurea in Economia";
+
+2.
+SELECT 
+    `degrees`.`name`  
+FROM 
+    `degrees`
+JOIN 
+    `departments`
+ON 
+    `departments`.`id` = `degrees`.`department_id`
+WHERE 
+    `departments`.`name` = "Dipartimento di Neuroscienze"
+    AND `degrees`.`level` = "magistrale";
+
+
+3.
+SELECT 
+    `courses`.`name` AS `Corsi`
+FROM 
+    `teachers`
+JOIN 
+    `course_teacher`
+ON	
+    `teachers`.`id` = `course_teacher`.`teacher_id`
+JOIN 
+    `courses`
+ON	
+    `course_teacher`.`course_id` = `courses`.`id`
+WHERE 
+    `teachers`.`id` = 44;
+
+
+
+4.
+SELECT 
+	`students`.`surname` AS `Cognome`,
+    `students`.`name` AS `Nome`,
+    `degrees`.name AS `Laurea`,
+    `departments`.`name` AS `Dipartimento`
+FROM 
+    `students`
+JOIN 
+    `degrees`
+ON	
+    `students`.`degree_id` = `degrees`.`id`
+JOIN 
+    `departments`
+ON 
+    `degrees`.`department_id` = `departments`.`id`  
+ORDER BY `Cognome` ASC;
+
+
+
+5.
+SELECT 
+	`degrees`.`name` AS `Corso di laurea`,
+    `courses`.name AS `Corsi`,
+    `teachers`.`name` AS `Professori`,
+    `teachers`.`surname`AS `Cognome`
+FROM 
+    `degrees`
+JOIN 
+    `courses`
+ON 
+    `degrees`.`id` = `courses`.`degree_id`
+JOIN 
+    `course_teacher`
+ON 
+    `courses`.`id` = `course_teacher`.`course_id`
+JOIN 
+    `teachers`
+ON 
+    `teachers`.`id` = `course_teacher`.`teacher_id`;
